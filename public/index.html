@@ -63,12 +63,7 @@
     };
     timeline.push(instructions)
  
-    var trial = {
-        type: 'html-slider-response',
-        stimulus: '<p>colorful</p>',
-        labels: ['not', 'very'],
-        prompt: "<p>colorful</p>"
-    };
+    
     //timeline.push(trial);
     //set randomized procedure
     //bold animals
@@ -76,7 +71,7 @@
         trial1 = {
             var: animal = myAnimals[i],
             type: 'survey-likert',
-            preamble: 'How well do each of these words describe a ' + animal + ', on a scale from 1 (not well) to 5 (very well)?',
+            preamble: 'How well do each of these words describe a <b>'+ animal + '</b>, on a scale from 1 (not well) to 5 (very well)?',
             questions: [
                 { prompt: descriptors[0], name: animal + ', ' + descriptors[0], labels: opts, required: "true"},
                 { prompt: descriptors[1], name: animal + ', ' + descriptors[1], labels: opts,  required: "true"},
@@ -112,7 +107,7 @@
                 { prompt: "This animal is awake during the:", name: animal + ', awake', options: ["night", "day"], required: "true"},
                 { prompt: "This animal is a:", name: animal + ', diet', options: ["herbivore", "omnivore", "carnivore"], required: "true"},
                 { prompt: "this animal is a:", name: animal + ', type', options: ["reptile", "mammal", "amphibean", "bird", "fish", "invertibrate"], required: "true"},
-                { prompt: "This animal lives in the:", name: animal + ', habitat', options: ["desert", "forest", "tropics", "arctic", "water", "other"], required: "true"},
+                //{ prompt: "This animal lives in the:", name: animal + ', habitat', options: ["desert", "forest", "tropics", "arctic", "water", "other"], required: "true"},
                 { prompt: "This animal lives in the desert:", name: animal + ', desert', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal lives in the forest:", name: animal + ', forest', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal lives in the tropics:", name: animal + ', tropics', options: ["yes", "no", "don't know"], required: "true"},
@@ -120,7 +115,7 @@
                 { prompt: "This animal lives on land:", name: animal + ', land', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal lives in the water:", name: animal + ', water', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal's lifespan is", name: animal + ', lifespan', options: ["long", "medium", "short"], required: "true"},
-                { prompt: "This animal comes to mind", name: animal + ', lifespan', options: ["never", "rarely", "an average amount", "often", "all the time"], required: "true"},
+                { prompt: "How often do you think about this animal (for any reason)?", name: animal + ', think', options: ["very rarely", "rarely", "an average amount", "often", "very often"], required: "true"},
             ]
         };
         timeline.push(trial2);
