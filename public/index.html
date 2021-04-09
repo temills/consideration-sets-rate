@@ -20,7 +20,7 @@
     var unshuffledDescriptors = ["large", "cool", "cute", "dangerous", "normal", "striking"];
     var descriptors = jsPsych.randomization.sampleWithoutReplacement(unshuffledDescriptors, unshuffledDescriptors.length);
     var opts = [1, 2, 3, 4, 5];
-    var numTrials = 6;
+    var numTrials = 1;
     var myAnimals = jsPsych.randomization.sampleWithoutReplacement(animals, numTrials);
 
     // meta-variables - fill in
@@ -102,7 +102,7 @@
         trial2 = {
             var: animal = myAnimals[i],
             type: 'survey-multi-choice',
-            preamble: 'Still considering a ' + animal + ', choose the best option for each of the following questions.',
+            preamble: 'Still considering a <b>'+ animal + '</b>, choose the best option for each of the following questions.',
             questions: [
                 { prompt: "This animal is awake during the:", name: animal + ', awake', options: ["night", "day"], required: "true"},
                 { prompt: "This animal is a:", name: animal + ', diet', options: ["herbivore", "omnivore", "carnivore"], required: "true"},
