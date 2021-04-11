@@ -20,7 +20,7 @@
             trialData.animal = Object.keys(res1)[0].split(", ")[0];
             for (var j=0; j<Object.keys(res1).length; j++) {
                 var key = Object.keys(res1)[j].split(", ")[1];
-                var r = String(Object.values(res1)[j]);
+                var r = String(Object.values(res1)[j]+1);
                 r = r.replace(/'/gi, "");
                 r = r.replace(/"/gi, "");
                 r = r.replace(/;/gi, "");
@@ -75,7 +75,7 @@
             }
             x++;
         }
-        var valuesStr = ""
+        var valuesStr = "";
         for (var i=0; i<valuesList.length; i++) {
             var values = valuesList[i];
             values = "(" + values.substring(0, values.length-2) + ")";
