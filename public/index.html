@@ -17,7 +17,7 @@
 
     var animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"];
     //var unshuffledDescriptors = ["large", "furry", "rare", "weird", "wild", "fast", "aggressive", "exotic", "dangerous", "active", "social", "smart", "graceful", "colorful", "patterned", "cute", "scary", "beautiful", "loud", "heavy", "tall"];
-    var unshuffledDescriptors = ["large", "cool", "cute", "dangerous", "normal", "striking"];
+    var unshuffledDescriptors = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"];
     var descriptors = jsPsych.randomization.sampleWithoutReplacement(unshuffledDescriptors, unshuffledDescriptors.length);
     var opts = [1, 2, 3, 4, 5];
     var numTrials = 8;
@@ -71,7 +71,7 @@
         trial1 = {
             var: animal = myAnimals[i],
             type: 'survey-likert',
-            preamble: 'How well do each of these words describe a <b>'+ animal + '</b>, on a scale from 1 (not well) to 5 (very well)?',
+            preamble: 'How well do each of these descriptions fit a <b>'+ animal + '</b>, on a scale from 1 (not well) to 5 (very well)?',
             questions: [
                 { prompt: descriptors[0], name: animal + ', ' + descriptors[0], labels: opts, required: "true"},
                 { prompt: descriptors[1], name: animal + ', ' + descriptors[1], labels: opts,  required: "true"},
@@ -79,22 +79,6 @@
                 { prompt: descriptors[3], name: animal + ', ' + descriptors[3], labels: opts, horizontal: true, required: "true"},
                 { prompt: descriptors[4], name: animal + ', ' + descriptors[4], labels: opts, horizontal: true, required: "true"},
                 { prompt: descriptors[5], name: animal + ', ' + descriptors[5], labels: opts, horizontal: true, required: "true"},
-                /*{ prompt: descriptors[6], name: animal + ', ' + descriptors[6], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[7], name: animal + ', ' + descriptors[7], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[8], name: animal + ', ' + descriptors[8], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[9], name: animal + ', ' + descriptors[9], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[10], name: animal + ', ' + descriptors[10], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[11], name: animal + ', ' + descriptors[11], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[12], name: animal + ', ' + descriptors[12], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[13], name: animal + ', ' + descriptors[13], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[14], name: animal + ', ' + descriptors[14], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[15], name: animal + ', ' + descriptors[15], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[16], name: animal + ', ' + descriptors[16], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[17], name: animal + ', ' + descriptors[17], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[18], name: animal + ', ' + descriptors[18], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[19], name: animal + ', ' + descriptors[19], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[20], name: animal + ', ' + descriptors[20], labels: opts, horizontal: true, required: "true"}
-                */
             ],
         };
         timeline.push(trial1);  
@@ -118,7 +102,7 @@
                 { prompt: "How often do you think about this animal (for any reason)?", name: animal + ', think', options: ["very rarely", "rarely", "an average amount", "often", "very often"], required: "true"},
             ]
         };
-        timeline.push(trial2);
+        //timeline.push(trial2);
     };
 
 

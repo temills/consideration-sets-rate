@@ -16,7 +16,7 @@
             data[i+1] = JSON.parse(JSON.stringify(data[i+1]));
             trialData.rt = data[i]["rt"] + data[i+1]["rt"] ;
             var res1 = JSON.parse(data[i]["responses"]);
-            var res2 = JSON.parse(data[i+1]["responses"]);
+            //var res2 = JSON.parse(data[i+1]["responses"]);
             trialData.animal = Object.keys(res1)[0].split(", ")[0];
             for (var j=0; j<Object.keys(res1).length; j++) {
                 var key = Object.keys(res1)[j].split(", ")[1];
@@ -28,6 +28,7 @@
                 r = r.replace(/\\/gi, "");
                 trialData[key] = r;
             }
+            /*
             for (var j=0; j<Object.keys(res2).length; j++) {
                 var key = Object.keys(res2)[j].split(", ")[1];
                 var r = String(Object.values(res2)[j]);
@@ -38,12 +39,15 @@
                 r = r.replace(/\\/gi, "");
                 trialData[key] = r;
             }
-            var demo1 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+(numTrials*2)]))["responses"]);
+            */
+            //var demo1 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+(numTrials*2)]))["responses"]);
+            var demo1 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+numTrials]))["responses"]);
             trialData.age = Object.values(demo1)[0];
             trialData.language = Object.values(demo1)[1];
             trialData.nationality = Object.values(demo1)[2];
             trialData.country = Object.values(demo1)[3];
-            var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+(numTrials*2)+1]))["responses"]);
+            //var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+(numTrials*2)+1]))["responses"]);
+            var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+numTrials*+1]))["responses"]);
             trialData.gender = Object.values(demo2)[0];
             trialData.student = Object.values(demo2)[1];
             trialData.education = Object.values(demo2)[2];
