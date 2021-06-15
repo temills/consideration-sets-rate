@@ -21,6 +21,10 @@
             trialData.animal = Object.keys(res1)[0].split(", ")[0];
             for (var j=0; j<Object.keys(res1).length; j++) {
                 var key = Object.keys(res1)[j].split(", ")[1];
+                if (key.includes(" ")) {
+                    var tick = "`";
+                    key = tick.concat(key, tick);
+                }
                 var r = String(Object.values(res1)[j]+1);
                 r = r.replace(/'/gi, "");
                 r = r.replace(/"/gi, "");
@@ -87,6 +91,6 @@
             valuesStr = valuesStr + values + ", ";
         }
         valuesStr = valuesStr.substring(0, valuesStr.length-2);
-        //console.log("INSERT INTO " + table + keys + " " + "VALUES " + valuesStr + ";");
+        console.log("INSERT INTO " + table + keys + " " + "VALUES " + valuesStr + ";");
         return "INSERT INTO " + table + keys + " " + "VALUES " + valuesStr + ";";
     }
