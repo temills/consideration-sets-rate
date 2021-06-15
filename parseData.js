@@ -52,7 +52,7 @@
             trialData.nationality = Object.values(demo1)[2];
             trialData.country = Object.values(demo1)[3];
             //var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+(numTrials*2)+1]))["responses"]);
-            var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+numTrials*+1]))["responses"]);
+            var demo2 = JSON.parse(JSON.parse(JSON.stringify(data[startIndex+numTrials+1]))["responses"]);
             trialData.gender = Object.values(demo2)[0];
             trialData.student = Object.values(demo2)[1];
             trialData.education = Object.values(demo2)[2];
