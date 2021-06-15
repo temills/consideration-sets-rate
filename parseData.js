@@ -7,14 +7,15 @@
         //list of dictionaries, where each dictionary keeps the data for a single trial
         //Those dictionaries will become  rows in the data table
         var allData = [];
-        for (var i=startIndex; i<startIndex+(numTrials*2); i=i+2) {
+        //for (var i=startIndex; i<startIndex+(numTrials*2); i=i+2) {
+        for (var i=startIndex; i<startIndex+numTrials; i=i+1) {
             var trialData = {};
             trialData.trial_order = i+1-startIndex;
             trialData.turk_code = JSON.parse(JSON.stringify(data[0]))["turk_code"];
             trialData.subject_id = JSON.parse(JSON.parse(JSON.stringify(data[2]))["responses"])["subject_id"];
             data[i] = JSON.parse(JSON.stringify(data[i]));
-            data[i+1] = JSON.parse(JSON.stringify(data[i+1]));
-            trialData.rt = data[i]["rt"] + data[i+1]["rt"] ;
+            //data[i+1] = JSON.parse(JSON.stringify(data[i+1]));
+            trialData.rt = data[i]["rt"];// + data[i+1]["rt"] ;
             var res1 = JSON.parse(data[i]["responses"]);
             //var res2 = JSON.parse(data[i+1]["responses"]);
             trialData.animal = Object.keys(res1)[0].split(", ")[0];
