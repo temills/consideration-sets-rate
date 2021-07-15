@@ -18,7 +18,7 @@
             trialData.rt = data[i]["rt"];// + data[i+1]["rt"] ;
             var res1 = JSON.parse(data[i]["responses"]);
             //var res2 = JSON.parse(data[i+1]["responses"]);
-            trialData.animal = Object.keys(res1)[0].split(", ")[0];
+            trialData.item = Object.keys(res1)[0].split(", ")[0];
             for (var j=0; j<Object.keys(res1).length; j++) {
                 var key = Object.keys(res1)[j].split(", ")[1];
                 if (key.includes(" ")) {
@@ -66,7 +66,7 @@
         console.log("Parsing data");
         data = reformatData(data);
         console.log("done");
-        var table = 'zoo_animals2';
+        var table = 'chain_restaurants';
         var keys = "";
         var keyArr = Object.keys(data[0]);
         for(var i=0; i<keyArr.length; i++) {

@@ -15,13 +15,17 @@
     <body></body>
     <script>
 
-    var animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"];
+    category = "zoo animals";
+    //var items = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"];
+    var items = [];
+    var unshuffledDescriptors = ["think", "like", "popular", "many locations", "unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
     //var unshuffledDescriptors = ["large", "furry", "rare", "weird", "wild", "fast", "aggressive", "exotic", "dangerous", "active", "social", "smart", "graceful", "colorful", "patterned", "cute", "scary", "beautiful", "loud", "heavy", "tall"];
-    var unshuffledDescriptors = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"];
+    //var unshuffledDescriptors = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"];
     var descriptors = jsPsych.randomization.sampleWithoutReplacement(unshuffledDescriptors, unshuffledDescriptors.length);
+    var statements = {"think":"You think about this restaurant often.", "like":"You like this restaurant.", "popular":"This restaurant is popular.", "many locations":"This restaurant has many locations.", "unique":"This restaurant is unique.", "healthy":"This restaurant is healthy.", "brightly colored logo":"This restaurant has a brightly colored logo.", "lively":"This restaurant is lively.", "variety":"This restaurant offers a large variety of foods.", "well decorated":"This restaurant is well decorated.", "expensive":"This restaurant is expensive.", "quick":"This restaurant is quick.", "casual":"This restaurant is casual."}
     var opts = [1, 2, 3, 4, 5];
     var numTrials = 8;
-    var myAnimals = jsPsych.randomization.sampleWithoutReplacement(animals, numTrials);
+    var myItems = jsPsych.randomization.sampleWithoutReplacement(items, numTrials);
 
     // meta-variables - fill in
     var turk_code = jsPsych.randomization.randomID(12);
@@ -59,7 +63,7 @@
     //set instructions
     var instructions = {
         type: "html-keyboard-response",
-        stimulus: "In this experiment, you will be asked to answer questions about different zoo animals. <br><br> Press any key to begin."
+        stimulus: "In this experiment, you will be asked to answer questions about different " + category + ". <br><br> Press any key to begin."
     };
     timeline.push(instructions)
  
@@ -69,28 +73,35 @@
     //bold animals
     for (var i = 0; i < numTrials; i++) {
         trial1 = {
-            var: animal = myAnimals[i],
+            var: item = myItems[i],
             type: 'survey-likert',
-            preamble: 'How well do each of these descriptions fit a <b>'+ animal + '</b>, on a scale from 1 (not well) to 5 (very well)?',
+            preamble: 'How well do each of these statements describe <b>'+ item + '</b>, on a scale from 1 (not well) to 5 (very well)?',
             questions: [
-                { prompt: descriptors[0], name: animal + ', ' + descriptors[0], labels: opts, required: "true"},
-                { prompt: descriptors[1], name: animal + ', ' + descriptors[1], labels: opts,  required: "true"},
-                { prompt: descriptors[2], name: animal + ', ' + descriptors[2], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[3], name: animal + ', ' + descriptors[3], labels: opts, horizontal: true, required: "true"},
-                { prompt: descriptors[4], name: animal + ', ' + descriptors[4], labels: opts, horizontal: true, required: "true"},
+                { prompt: statements[descriptors[0]], name: item + ', ' + descriptors[0], labels: opts, required: true},
+                { prompt: statements[descriptors[1]], name: item + ', ' + descriptors[1], labels: opts,  required: true},
+                { prompt: statements[descriptors[2]], name: item + ', ' + descriptors[2], labels: opts, required: true},
+                { prompt: statements[descriptors[3]], name: item + ', ' + descriptors[3], labels: opts, required: true},
+                { prompt: statements[descriptors[4]], name: item + ', ' + descriptors[4], labels: opts, required: true},
+                { prompt: statements[descriptors[5]], name: item + ', ' + descriptors[0], labels: opts, required: true},
+                { prompt: statements[descriptors[6]], name: item + ', ' + descriptors[1], labels: opts,  required: true},
+                { prompt: statements[descriptors[7]], name: item + ', ' + descriptors[2], labels: opts, required: true},
+                { prompt: statements[descriptors[8]], name: item + ', ' + descriptors[3], labels: opts, required: true},
+                { prompt: statements[descriptors[9]], name: item + ', ' + descriptors[4], labels: opts, required: true},
+                { prompt: statements[descriptors[10]], name: item + ', ' + descriptors[0], labels: opts, required: true},
+                { prompt: statements[descriptors[11]], name: item + ', ' + descriptors[1], labels: opts,  required: true},
+                { prompt: statements[descriptors[12]], name: item + ', ' + descriptors[2], labels: opts, required: true}
             ],
         };
         timeline.push(trial1);  
 
         trial2 = {
-            var: animal = myAnimals[i],
+            var: item = myItems[i],
             type: 'survey-multi-choice',
-            preamble: 'Still considering a <b>'+ animal + '</b>, choose the best option for each of the following questions.',
+            preamble: 'Still considering <b>'+ item + '</b>, choose the best option for each of the following questions.',
             questions: [
                 { prompt: "This animal is awake during the:", name: animal + ', awake', options: ["night", "day"], required: "true"},
                 { prompt: "This animal is a:", name: animal + ', diet', options: ["herbivore", "omnivore", "carnivore"], required: "true"},
                 { prompt: "this animal is a:", name: animal + ', type', options: ["reptile", "mammal", "amphibean", "bird", "fish", "invertibrate"], required: "true"},
-                //{ prompt: "This animal lives in the:", name: animal + ', habitat', options: ["desert", "forest", "tropics", "arctic", "water", "other"], required: "true"},
                 { prompt: "This animal lives in the desert:", name: animal + ', desert', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal lives in the forest:", name: animal + ', forest', options: ["yes", "no", "don't know"], required: "true"},
                 { prompt: "This animal lives in the tropics:", name: animal + ', tropics', options: ["yes", "no", "don't know"], required: "true"},
