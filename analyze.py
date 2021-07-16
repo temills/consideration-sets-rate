@@ -102,8 +102,35 @@ def create_dict():
             data2[d][a] = data2[d].get(a, 0)
 
     return data, data2
+
+def create_dict2(trial_data):
+    data = {}
+    for trial in trial_data:
+        a = trial["item"]
+        for d in descriptors:
+            data[d] = data.get(d, {})   #dict for descriptor d
+            data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+            data[d][a][0].append(int(trial[d]))
+            data[d][a][1] = data[d][a][1] + 1
+    data2 = {}
+    for d, d_dict in data.items():
+        data2[d] = {}
+        for a in d_dict.keys():
+            if data[d][a][1] == 0:
+                data[d][a][2] = 0
+            else:
+                data[d][a][2] = sum(data[d][a][0])/data[d][a][1]
+            data2[d][a] = data[d][a][2]
+    
+    for a in items:
+        for d in data2.keys():
+            data2[d][a] = data2[d].get(a, 0)
+
+    return data, data2
+
 data, ratings = create_dict()
 #print(data)
+
 def num_res_per_a(data):
     nums = []
     for a in animals:
@@ -115,7 +142,7 @@ def num_res_per_a(data):
 #generation data
 with open('/Users/traceymills/Documents/generation_data.csv.json') as f:
   gen_data = json.load(f)
-def generations():
+def generations(category):
     data = gen_data
     numCats = 10
     trialsPerCat = len(data)/numCats
@@ -125,8 +152,6 @@ def generations():
     #animalsTemp = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
     for trial in data:
         cat = trial['category']
-        if cat != "zoo animals":
-            continue
         genCounts[cat] = genCounts.get(cat, {})
         genList[cat] = genList.get(cat, [])
         genList[cat].append([])
@@ -146,7 +171,7 @@ def generations():
             genCounts[cat][gen] = genCounts[cat].get(gen, 0) + 1
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
-    return genCounts["zoo animals"], genList["zoo animals"]
+    return genCounts[category], genList[category]
 genCounts, genList = generations()
 
 def getGenProbs(genCounts):

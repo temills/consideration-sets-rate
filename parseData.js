@@ -66,7 +66,7 @@
         console.log("Parsing data");
         data = reformatData(data);
         console.log("done");
-        var table = 'chain_restaurants';
+        var table = 'vegetables';
         var keys = "";
         var keyArr = Object.keys(data[0]);
         for(var i=0; i<keyArr.length; i++) {
