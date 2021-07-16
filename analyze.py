@@ -21,18 +21,26 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 #did first speed analysis with "has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little" and "large", "cool", "striking", "dangerous", "lifespan"
 #second speed analysis with "cute", "normal", "desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake", "diet", "type"
 #rating data
-with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data.csv.json') as f1:
-  trial_data1 = json.load(f1)
-with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data2.csv.json') as f2:
-  trial_data2 = json.load(f2)
-#descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
-#descriptors2 = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"]
+#with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data.csv.json') as f1:
+#  animals_1 = json.load(f1)
+#with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data2.csv.json') as f2:
+#  animals_2 = json.load(f2)
+#with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f3:
+#  vegetables = json.load(f3)
+with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
+  restaurants = json.load(f4)
+resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
+restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
+
+
+descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
+descriptors2 = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"]
 #questions = []
 #questions2 = []
 
-descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
-questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake"]
-questions2 = ["type", "diet"]
+#descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
+#questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake"]
+#questions2 = ["type", "diet"]
 animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "monkey", "snake", "panther", "kangaroo", "owl", "otter", "cheetah", "gazelle", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #removed giraffe, lion, tiger, elephant, rhino, alligator
@@ -41,72 +49,39 @@ animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "go
 def get_animals():
     return animals
 
-def create_dict():
+def create_dict(trial_data):
     data = {}
-    for trial in trial_data1:
+    for trial in trial_data:
         a = trial["animal"]
         if a not in animals:
             continue
         for d in descriptors:
-            data[d] = data.get(d, {})   #dict for descriptor d
-            data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
-            data[d][a][0].append(int(trial[d]))
-            data[d][a][1] = data[d][a][1] + 1
-        for q in questions2:
-            data[q] = data.get(q, {})
-            data[q][a] = data[q].get(a, {})
-            data[q][a][trial[q]] = data[q][a].get(trial[q], 0) + 1
-        for q in questions:
-            data[q] = data.get(q, {})   #dict for descriptor d
-            data[q][a] = data[q].get(a, [[], 0, 0])   #list of responses, num responses, average
-            n = 0
-            if q == "lifespan":
-                if trial[q] == "short": n=0
-                if trial[q] == "medium": n=1
-                if trial[q] == "long": n=2
-            if q == "think":
-                if trial[q] == "very rarely": n=0
-                if trial[q] == "rarely": n=1
-                if trial[q] == "an average amount": n=2
-                if trial[q] == "often": n=3
-                if trial[q] == "very often": n=4
-            if q == "awake":
-                if trial[q] == "day": n=1
-                else: n=0
-            else:
-                if trial[q] == "yes": n=1
-                if trial[q] == "no": n=0
-                if trial[q] == "dont know": n == 0.5
-            data[q][a][0].append(n)
-            data[q][a][1] = data[q][a][1] + 1
+            if d in trial.keys():
+                data[d] = data.get(d, {})   #dict for descriptor d
+                data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+                data[d][a][0].append(int(trial[d]))
+                data[d][a][1] = data[d][a][1] + 1
     data2 = {}
-    for q in questions2:
-        for a, option_dict in data[q].items():
-            total = sum(data[q][a].values())
-            for option, n in data[q][a].items():
-                key = q + ", " + option
-                data2[key] = data2.get(key, {})
-                data2[key][a] = n/total
     for d, d_dict in data.items():
-        if d in questions2: continue
         data2[d] = {}
         for a in d_dict.keys():
             if data[d][a][1] == 0:
                 data[d][a][2] = 0
             else:
                 data[d][a][2] = sum(data[d][a][0])/data[d][a][1]
-            data2[d][a] = data[d][a][2]
-    
+            data2[d][a] = data[d][a][2]    
     for a in animals:
         for d in data2.keys():
             data2[d][a] = data2[d].get(a, 0)
 
     return data, data2
 
-def create_dict2(trial_data):
+def create_dict2(trial_data, descriptors, x):
     data = {}
+    allItems = []
     for trial in trial_data:
-        a = trial["item"]
+        a = str.lower(trial[x])
+        allItems.append(a)
         for d in descriptors:
             data[d] = data.get(d, {})   #dict for descriptor d
             data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
@@ -122,14 +97,14 @@ def create_dict2(trial_data):
                 data[d][a][2] = sum(data[d][a][0])/data[d][a][1]
             data2[d][a] = data[d][a][2]
     
-    for a in items:
+    for a in allItems:
         for d in data2.keys():
             data2[d][a] = data2[d].get(a, 0)
 
     return data, data2
 
-data, ratings = create_dict()
-#print(data)
+data, ratings = create_dict2(restaurants, resDescriptors, "item")
+print(ratings)
 
 def num_res_per_a(data):
     nums = []
@@ -142,7 +117,7 @@ def num_res_per_a(data):
 #generation data
 with open('/Users/traceymills/Documents/generation_data.csv.json') as f:
   gen_data = json.load(f)
-def generations(category):
+def generations(category, items):
     data = gen_data
     numCats = 10
     trialsPerCat = len(data)/numCats
@@ -161,7 +136,7 @@ def generations(category):
             if len(get_close_matches(gen, ["n/a", "na", "dont know", "none"], 1, 0.85)) > 0:
                 continue
             #animalsTemp.append(list(genCounts[cat].keys()))
-            matches = get_close_matches(gen, animals, 1, 0.85)
+            matches = get_close_matches(gen, items, 1, 0.85)
             if len(matches) > 0:
                 gen = matches[0]
             elif gen == "bear":
@@ -172,7 +147,7 @@ def generations(category):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, genList = generations()
+genCounts, genList = generations('chain restaurants', restaurantList)
 
 def getGenProbs(genCounts):
     probs = {}
@@ -182,7 +157,7 @@ def getGenProbs(genCounts):
     return probs
 probs = getGenProbs(genCounts)
 
-#print(genCounts)
+print(genCounts)
 #print(sorted(probs.items(), key=lambda item: item[1], reverse=True))
 
 
@@ -196,8 +171,8 @@ def genDescriptorCorrelation(probs, ratings):
     for d, d_dict in ratings.items():
         x, y = [], []
         for a, n in d_dict.items():
-            x.append(n) #average rating for animal
-            y.append(probs.get(a, 0)) #probability of generation for animal
+            x.append(n) #average rating for item
+            y.append(probs.get(a, 0)) #probability of generation for item
         correlations[d] = np.corrcoef(x, y)[0][1]
     return correlations
 corrs = genDescriptorCorrelation(probs, ratings)
@@ -336,6 +311,34 @@ def animalsData(probs, animalFactorScores):
 #print(sorted(ratings["striking"].items(), key=lambda item: item[1], reverse=True)[0:10])
 #print(sorted(ratings["large"].items(), key=lambda item: item[1], reverse=True)[0:10])
 #print(sorted(ratings["dangerous"].items(), key=lambda item: item[1], reverse=True)[0:10])
+
+# for q in questions2:
+#             data[q] = data.get(q, {})
+#             data[q][a] = data[q].get(a, {})
+#             data[q][a][trial[q]] = data[q][a].get(trial[q], 0) + 1
+#         for q in questions:
+#             data[q] = data.get(q, {})   #dict for descriptor d
+#             data[q][a] = data[q].get(a, [[], 0, 0])   #list of responses, num responses, average
+#             n = 0
+#             if q == "lifespan":
+#                 if trial[q] == "short": n=0
+#                 if trial[q] == "medium": n=1
+#                 if trial[q] == "long": n=2
+#             if q == "think":
+#                 if trial[q] == "very rarely": n=0
+#                 if trial[q] == "rarely": n=1
+#                 if trial[q] == "an average amount": n=2
+#                 if trial[q] == "often": n=3
+#                 if trial[q] == "very often": n=4
+#             if q == "awake":
+#                 if trial[q] == "day": n=1
+#                 else: n=0
+#             else:
+#                 if trial[q] == "yes": n=1
+#                 if trial[q] == "no": n=0
+#                 if trial[q] == "dont know": n == 0.5
+#             data[q][a][0].append(n)
+#             data[q][a][1] = data[q][a][1] + 1
 
 
         
