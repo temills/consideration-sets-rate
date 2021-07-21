@@ -27,10 +27,15 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 #  animals_2 = json.load(f2)
 #with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f3:
 #  vegetables = json.load(f3)
-with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
-  restaurants = json.load(f4)
-resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
-restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
+#with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
+#  restaurants = json.load(f4)
+#resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
+#restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
+
+with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f5:
+  vegetables = json.load(f5)
+vegDescriptors = ["colorful", "think","dishes","popular", "likes", "available", "healthy", "fragrant", "warm", "sweet", "large", "crunchy", "heavy", "calories"]
+vegetableList = ['carrots', 'broccoli', 'lettuce', 'peas', 'potatoes', 'onions', 'cauliflower', 'corn', 'green beans', 'tomatoes', 'cucumbers', 'spinach', 'squash', 'celery', 'peppers', 'eggplant', 'cabbage', 'asparagus', 'brussel sprouts', 'kale', 'turnips', 'zucchini', 'garlic', 'pumpkins', 'beets', 'mushrooms', 'radish', 'okra', 'yams', 'sweet potatoes', 'arugula', 'sprouts', 'artichoke', 'parsnips', 'bok choy', 'lima beans', 'avocado', 'snap peas', 'leeks', 'collard greens']
 
 
 descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
@@ -103,7 +108,7 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(restaurants, resDescriptors, "item")
+data, ratings = create_dict2(vegetables, vegDescriptors, "item")
 print(ratings)
 
 def num_res_per_a(data):
@@ -147,7 +152,7 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, genList = generations('chain restaurants', restaurantList)
+genCounts, genList = generations('vegetables', vegetableList)
 
 def getGenProbs(genCounts):
     probs = {}
