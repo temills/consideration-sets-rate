@@ -27,14 +27,16 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 #  animals_2 = json.load(f2)
 #with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f3:
 #  vegetables = json.load(f3)
-#with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
-#  restaurants = json.load(f4)
-#resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
-#restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
+with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
+  restaurants = json.load(f4)
+resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
+#resDescriptors = ["interesting side dishes", "soft food", "cold food", "desserts"]
+restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
+
 
 with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f5:
   vegetables = json.load(f5)
-vegDescriptors = ["colorful", "think","dishes","popular", "likes", "available", "healthy", "fragrant", "warm", "sweet", "large", "crunchy", "heavy", "calories"]
+vegDescriptors = ["colorful", "think", "dishes", "popular", "likes", "available", "healthy", "fragrant", "warm", "sweet", "large", "crunchy", "heavy", "calories"]
 vegetableList = ['carrots', 'broccoli', 'lettuce', 'peas', 'potatoes', 'onions', 'cauliflower', 'corn', 'green beans', 'tomatoes', 'cucumbers', 'spinach', 'squash', 'celery', 'peppers', 'eggplant', 'cabbage', 'asparagus', 'brussel sprouts', 'kale', 'turnips', 'zucchini', 'garlic', 'pumpkins', 'beets', 'mushrooms', 'radish', 'okra', 'yams', 'sweet potatoes', 'arugula', 'sprouts', 'artichoke', 'parsnips', 'bok choy', 'lima beans', 'avocado', 'snap peas', 'leeks', 'collard greens']
 
 
@@ -43,18 +45,23 @@ descriptors2 = ["has large feet relative to its body size", "quiet", "has good h
 #questions = []
 #questions2 = []
 
-#descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
-#questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake"]
-#questions2 = ["type", "diet"]
-animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
+
+with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data.csv.json') as f5:
+  animals = json.load(f5)
+descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
+questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake"]
+questions2 = ["type", "diet"]
+animalList = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "monkey", "snake", "panther", "kangaroo", "owl", "otter", "cheetah", "gazelle", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #removed giraffe, lion, tiger, elephant, rhino, alligator
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "snake", "panther", "kangaroo", "owl", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "lizard", "fish"]
 #removed zebra, lion, giraffe, elephant, tiger, grizzly bear, monkey
+descriptors = ["think"]
+
 def get_animals():
     return animals
 
-def create_dict(trial_data):
+def create_dict(trial_data, an):
     data = {}
     for trial in trial_data:
         a = trial["animal"]
@@ -62,10 +69,21 @@ def create_dict(trial_data):
             continue
         for d in descriptors:
             if d in trial.keys():
-                data[d] = data.get(d, {})   #dict for descriptor d
-                data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
-                data[d][a][0].append(int(trial[d]))
-                data[d][a][1] = data[d][a][1] + 1
+                if an == True:
+                    if trial[q] == "very rarely": n=0
+                    if trial[q] == "rarely": n=1
+                    if trial[q] == "an average amount": n=2
+                    if trial[q] == "often": n=3
+                    if trial[q] == "very often": n=4
+                    data[d] = data.get(d, {})   #dict for descriptor d
+                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+                    data[d][a][0].append(n)
+                    data[d][a][1] = data[d][a][1] + 1
+                else:
+                    data[d] = data.get(d, {})   #dict for descriptor d
+                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+                    data[d][a][0].append(int(trial[d]))
+                    data[d][a][1] = data[d][a][1] + 1
     data2 = {}
     for d, d_dict in data.items():
         data2[d] = {}
@@ -90,7 +108,15 @@ def create_dict2(trial_data, descriptors, x):
         for d in descriptors:
             data[d] = data.get(d, {})   #dict for descriptor d
             data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
-            data[d][a][0].append(int(trial[d]))
+            if x == "animal":
+                if trial[d] == "very rarely": n=0
+                if trial[d] == "rarely": n=1
+                if trial[d] == "an average amount": n=2
+                if trial[d] == "often": n=3
+                if trial[d] == "very often": n=4
+                data[d][a][0].append(n)
+            else:
+                data[d][a][0].append(int(trial[d]))
             data[d][a][1] = data[d][a][1] + 1
     data2 = {}
     for d, d_dict in data.items():
@@ -108,8 +134,8 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(vegetables, vegDescriptors, "item")
-print(ratings)
+#data, ratings = create_dict2(restaurants, resDescriptors, "item")
+#print(ratings)
 
 def num_res_per_a(data):
     nums = []
@@ -126,7 +152,7 @@ def generations(category, items):
     data = gen_data
     numCats = 10
     trialsPerCat = len(data)/numCats
-    print(trialsPerCat)
+    #print(trialsPerCat)
     genCounts = {}
     genList = {}
     #animalsTemp = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
@@ -152,7 +178,8 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, genList = generations('vegetables', vegetableList)
+
+
 
 def getGenProbs(genCounts):
     probs = {}
@@ -160,9 +187,9 @@ def getGenProbs(genCounts):
     for g, n in genCounts.items():
         probs[g] = n/tot
     return probs
-probs = getGenProbs(genCounts)
+#probs = getGenProbs(genCounts)
 
-print(genCounts)
+#print(genCounts)
 #print(sorted(probs.items(), key=lambda item: item[1], reverse=True))
 
 
@@ -180,8 +207,32 @@ def genDescriptorCorrelation(probs, ratings):
             y.append(probs.get(a, 0)) #probability of generation for item
         correlations[d] = np.corrcoef(x, y)[0][1]
     return correlations
+#corrs = genDescriptorCorrelation(probs, ratings)
+#print(corrs)
+
+#get think data
+print("restaurants:")
+genCounts, genList = generations('chain restaurants', restaurantList)
+data, ratings = create_dict2(restaurants, ["think"], "item")
+probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
 print(corrs)
+
+print("vegetables:")
+genCounts, genList = generations('vegetables', vegetableList)
+data, ratings = create_dict2(vegetables, ["think"], "item")
+probs = getGenProbs(genCounts)
+corrs = genDescriptorCorrelation(probs, ratings)
+print(corrs)
+
+print("animals:")
+genCounts, genList = generations('zoo animals', animalList)
+data, ratings = create_dict2(animals, ["think"], "animal")
+probs = getGenProbs(genCounts)
+corrs = genDescriptorCorrelation(probs, ratings)
+print(corrs)
+
+
 
 #print("Ratings for Descriptors:")
 def topDescriptors():
