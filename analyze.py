@@ -58,6 +58,12 @@ animalList = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", 
 #removed zebra, lion, giraffe, elephant, tiger, grizzly bear, monkey
 descriptors = ["think"]
 
+with open('/Users/traceymills/consideration/consideration-sets-rate/sports.json') as f6:
+  sports = json.load(f6)
+sportList = ['baseball', 'football', 'soccer', 'tennis', 'hockey', 'basketball', 'running', 'golf', 'volleyball', 'swimming', 'cricket', 'lacrosse', 'boxing', 'rugby', 'gymnastics', 'wrestling', 'ice skating', 'softball', 'bowling', 'skiing', 'polo', 'badminton', 'racecar driving', 'horseback riding', 'fencing', 'cheerleading', 'ping pong', 'biking', 'squash', 'curling', 'diving', 'raquetball', 'field hockey', 'water polo', 'handball', 'dance', 'snowboarding']
+descriptors = ['think', 'likes', 'popular', 'high energy', 'dangerous', 'strenuous', 'spectators', 'competitive', 'agility', 'expensive', 'space', 'been around', 'learn', 'flexibility']
+
+
 def get_animals():
     return animals
 
@@ -134,8 +140,7 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-#data, ratings = create_dict2(restaurants, resDescriptors, "item")
-#print(ratings)
+data, ratings = create_dict2(sports, descriptors, "item")
 
 def num_res_per_a(data):
     nums = []
@@ -178,7 +183,7 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-
+genCounts, x = generations('sports', "item")
 
 
 def getGenProbs(genCounts):
@@ -187,7 +192,7 @@ def getGenProbs(genCounts):
     for g, n in genCounts.items():
         probs[g] = n/tot
     return probs
-#probs = getGenProbs(genCounts)
+probs = getGenProbs(genCounts)
 
 #print(genCounts)
 #print(sorted(probs.items(), key=lambda item: item[1], reverse=True))
@@ -207,30 +212,30 @@ def genDescriptorCorrelation(probs, ratings):
             y.append(probs.get(a, 0)) #probability of generation for item
         correlations[d] = np.corrcoef(x, y)[0][1]
     return correlations
-#corrs = genDescriptorCorrelation(probs, ratings)
-#print(corrs)
+corrs = genDescriptorCorrelation(probs, ratings)
+print(corrs)
 
 #get think data
-print("restaurants:")
+#print("restaurants:")
 genCounts, genList = generations('chain restaurants', restaurantList)
 data, ratings = create_dict2(restaurants, ["think"], "item")
 probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
-print(corrs)
+#print(corrs)
 
-print("vegetables:")
+#print("vegetables:")
 genCounts, genList = generations('vegetables', vegetableList)
 data, ratings = create_dict2(vegetables, ["think"], "item")
 probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
-print(corrs)
+#print(corrs)
 
-print("animals:")
+#print("animals:")
 genCounts, genList = generations('zoo animals', animalList)
 data, ratings = create_dict2(animals, ["think"], "animal")
 probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
-print(corrs)
+#print(corrs)
 
 
 
