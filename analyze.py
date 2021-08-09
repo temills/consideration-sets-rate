@@ -63,6 +63,11 @@ with open('/Users/traceymills/consideration/consideration-sets-rate/sports.json'
 sportList = ['baseball', 'football', 'soccer', 'tennis', 'hockey', 'basketball', 'running', 'golf', 'volleyball', 'swimming', 'cricket', 'lacrosse', 'boxing', 'rugby', 'gymnastics', 'wrestling', 'ice skating', 'softball', 'bowling', 'skiing', 'polo', 'badminton', 'racecar driving', 'horseback riding', 'fencing', 'cheerleading', 'ping pong', 'biking', 'squash', 'curling', 'diving', 'raquetball', 'field hockey', 'water polo', 'handball', 'dance', 'snowboarding']
 descriptors = ['think', 'likes', 'popular', 'high energy', 'dangerous', 'strenuous', 'spectators', 'competitive', 'agility', 'expensive', 'space', 'been around', 'learn', 'flexibility']
 
+with open('/Users/traceymills/consideration/consideration-sets-rate/holidays.json') as f7:
+  holidays = json.load(f7)
+holidayList = ['Christmas', 'Thanksgiving', 'Fourth of July', 'Easter', 'Labor Day', 'Memorial Day', 'New Years', 'Halloween', 'Valentines Day', 'Veterans Day', 'Martin Luther King Jr. Day', 'Presidents Day', "St. Patricks Day", 'Hanukkah', 'Kwanza', 'Mothers Day', 'Fathers Day', 'Christopher Columbus Day', 'Passover', 'Birthdays', 'Chinese New Year', 'Ramadan', 'Cinco de Mayo', 'Earth Day', 'Flag Day', 'Diwali', 'Juneteenth', 'Winter Solstice', 'Boxing Day']
+descriptors = ['religious', 'political', 'around', 'family oriented', 'partying', 'time off', 'romantic', 'traditions', 'food', 'likes', 'think', 'widely celebrated', 'reflective', 'joyous', 'meaningful', 'early']
+
 
 def get_animals():
     return animals
@@ -140,7 +145,7 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(sports, descriptors, "item")
+data, ratings = create_dict2(holidays, descriptors, "item")
 
 def num_res_per_a(data):
     nums = []
@@ -183,7 +188,7 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, x = generations('sports', "item")
+genCounts, x = generations('holidays', "item")
 
 
 def getGenProbs(genCounts):
