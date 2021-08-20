@@ -68,6 +68,11 @@ with open('/Users/traceymills/consideration/consideration-sets-rate/holidays.jso
 holidayList = ['Christmas', 'Thanksgiving', 'Fourth of July', 'Easter', 'Labor Day', 'Memorial Day', 'New Years', 'Halloween', 'Valentines Day', 'Veterans Day', 'Martin Luther King Jr. Day', 'Presidents Day', "St. Patricks Day", 'Hanukkah', 'Kwanza', 'Mothers Day', 'Fathers Day', 'Christopher Columbus Day', 'Passover', 'Birthdays', 'Chinese New Year', 'Ramadan', 'Cinco de Mayo', 'Earth Day', 'Flag Day', 'Diwali', 'Juneteenth', 'Winter Solstice', 'Boxing Day']
 descriptors = ['religious', 'political', 'around', 'family oriented', 'partying', 'time off', 'romantic', 'traditions', 'food', 'likes', 'think', 'widely celebrated', 'reflective', 'joyous', 'meaningful', 'early']
 
+with open('/Users/traceymills/consideration/consideration-sets-rate/kitchen.json') as f8:
+  kitchen = json.load(f8)
+kitchenList = ['microwave', 'blender', 'refridgerator', 'toaster', 'electric mixer', 'oven', 'coffee maker', 'stove', 'dishwasher', 'toaster oven', 'slow cooker', 'food processor', 'air fryer', 'waffle iron', 'pressure cooker', 'can opener', 'freezer', 'deep fryer', 'rice cooker', 'kettle', 'juicer', 'electric knife', 'griddle', 'sink', 'grill', 'coffee grinder', 'garbage disposal', 'wine fridge', 'garlic press', 'panini press', 'timer',  'ice maker']
+descriptors = ['expensive', 'large', 'requires electricity', 'gets hot', 'specialized', 'common', 'dangerous', 'essential', 'loud', 'heavy', 'plain sight', 'often', 'easy', 'likes', 'think', 'metallic']
+
 
 def get_animals():
     return animals
@@ -145,7 +150,7 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(holidays, descriptors, "item")
+data, ratings = create_dict2(kitchen, descriptors, "item")
 
 def num_res_per_a(data):
     nums = []
@@ -188,7 +193,7 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, x = generations('holidays', "item")
+genCounts, x = generations('kitchen appliances', "item")
 
 
 def getGenProbs(genCounts):
