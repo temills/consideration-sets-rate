@@ -73,6 +73,11 @@ with open('/Users/traceymills/consideration/consideration-sets-rate/kitchen.json
 kitchenList = ['microwave', 'blender', 'refridgerator', 'toaster', 'electric mixer', 'oven', 'coffee maker', 'stove', 'dishwasher', 'toaster oven', 'slow cooker', 'food processor', 'air fryer', 'waffle iron', 'pressure cooker', 'can opener', 'freezer', 'deep fryer', 'rice cooker', 'kettle', 'juicer', 'electric knife', 'griddle', 'sink', 'grill', 'coffee grinder', 'garbage disposal', 'wine fridge', 'garlic press', 'panini press', 'timer',  'ice maker']
 descriptors = ['expensive', 'large', 'requires electricity', 'gets hot', 'specialized', 'common', 'dangerous', 'essential', 'loud', 'heavy', 'plain sight', 'often', 'easy', 'likes', 'think', 'metallic']
 
+with open('/Users/traceymills/consideration/consideration-sets-rate/jobs.json') as f8:
+  jobs = json.load(f8)
+jobList = ['doctor', 'nurse', 'teacher', 'lawyer', 'police officer', 'firefighter', 'accountant', 'cashier', 'chef', 'waitstaff', 'engineer', 'banker', 'plumber', 'dentist', 'construction worker', 'janitor', 'salesperson', 'secretary', 'truck driver', 'electrician', 'manager', 'mechanic', 'carpenter', 'driver', 'programmer', 'clerk', 'politician', 'mail carrier', 'scientist', 'veterinarian', 'pilot', 'taxi driver', 'ceo', 'designer', 'paramedic', 'garbage collector', 'receptionist', 'artist', 'judge', 'bus driver', 'farmer', 'milkman', 'office worker', 'painter', 'bartender', 'administrative assistant', 'writer', 'customer service representative', 'analyst', 'factory worker', 'information technology', 'stock broker', 'technician', 'musician', 'librarian', 'paleontologist', 'actor', 'marketer', 'pharmacist', 'social worker', 'flight attendant', 'busboy', 'astronaut', 'professor', 'contractor', 'youtuber', 'consultant', 'singer', 'producer', 'dancer',  'repariman', 'maid', 'auditor', 'beautician', 'roofer', 'lineman', 'senator', 'president', 'athlete', 'journalist', 'porn star', 'assistant', 'director', 'football player', 'therapist']
+descriptors = ['people oriented', 'pays well', 'desirable', 'common', 'think', 'likes', 'important', 'creativity', 'skills', 'physical', 'dangerous', 'detail oriented', 'been around', 'glamorous', 'male dominated', 'difficult']
+
 
 def get_animals():
     return animals
@@ -150,7 +155,7 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(kitchen, descriptors, "item")
+data, ratings = create_dict2(jobs, descriptors, "item")
 
 def num_res_per_a(data):
     nums = []
@@ -161,7 +166,7 @@ def num_res_per_a(data):
 
 ################################
 #generation data
-with open('/Users/traceymills/Documents/generation_data.csv.json') as f:
+with open('/Users/traceymills/consideration/consideration-sets/generation_data.json') as f:
   gen_data = json.load(f)
 def generations(category, items):
     data = gen_data
@@ -193,7 +198,7 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, x = generations('kitchen appliances', "item")
+genCounts, x = generations('jobs', "item")
 
 
 def getGenProbs(genCounts):
@@ -246,7 +251,6 @@ data, ratings = create_dict2(animals, ["think"], "animal")
 probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
 #print(corrs)
-
 
 
 #print("Ratings for Descriptors:")
