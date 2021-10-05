@@ -27,17 +27,39 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 #  animals_2 = json.load(f2)
 #with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f3:
 #  vegetables = json.load(f3)
-with open('/Users/traceymills/consideration/consideration-sets-rate/restaurants.json') as f4:
+with open('/Users/traceymills/consideration/item-ratings/response_data/restaurants.json') as f4:
   restaurants = json.load(f4)
 resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
 #resDescriptors = ["interesting side dishes", "soft food", "cold food", "desserts"]
 restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
 
 
-with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f5:
+with open('/Users/traceymills/consideration/item-ratings/response_data/vegetables.json') as f5:
   vegetables = json.load(f5)
 vegDescriptors = ["colorful", "think", "dishes", "popular", "likes", "available", "healthy", "fragrant", "warm", "sweet", "large", "crunchy", "heavy", "calories"]
 vegetableList = ['carrots', 'broccoli', 'lettuce', 'peas', 'potatoes', 'onions', 'cauliflower', 'corn', 'green beans', 'tomatoes', 'cucumbers', 'spinach', 'squash', 'celery', 'peppers', 'eggplant', 'cabbage', 'asparagus', 'brussel sprouts', 'kale', 'turnips', 'zucchini', 'garlic', 'pumpkins', 'beets', 'mushrooms', 'radish', 'okra', 'yams', 'sweet potatoes', 'arugula', 'sprouts', 'artichoke', 'parsnips', 'bok choy', 'lima beans', 'avocado', 'snap peas', 'leeks', 'collard greens']
+
+with open('/Users/traceymills/consideration/item-ratings/response_data/sports.json') as f6:
+  sports = json.load(f6)
+sportList = ['baseball', 'football', 'soccer', 'tennis', 'hockey', 'basketball', 'running', 'golf', 'volleyball', 'swimming', 'cricket', 'lacrosse', 'boxing', 'rugby', 'gymnastics', 'wrestling', 'ice skating', 'softball', 'bowling', 'skiing', 'polo', 'badminton', 'racecar driving', 'horseback riding', 'fencing', 'cheerleading', 'ping pong', 'biking', 'squash', 'curling', 'diving', 'raquetball', 'field hockey', 'water polo', 'handball', 'dance', 'snowboarding']
+sportsDescriptors = ['think', 'likes', 'popular', 'high energy', 'dangerous', 'strenuous', 'spectators', 'competitive', 'agility', 'expensive', 'space', 'been around', 'learn', 'flexibility']
+
+with open('/Users/traceymills/consideration/item-ratings/response_data/holidays.json') as f7:
+  holidays = json.load(f7)
+holidayList = ['Christmas', 'Thanksgiving', 'Fourth of July', 'Easter', 'Labor Day', 'Memorial Day', 'New Years', 'Halloween', 'Valentines Day', 'Veterans Day', 'Martin Luther King Jr. Day', 'Presidents Day', "St. Patricks Day", 'Hanukkah', 'Kwanza', 'Mothers Day', 'Fathers Day', 'Christopher Columbus Day', 'Passover', 'Birthdays', 'Chinese New Year', 'Ramadan', 'Cinco de Mayo', 'Earth Day', 'Flag Day', 'Diwali', 'Juneteenth', 'Winter Solstice', 'Boxing Day']
+holDescriptors = ['religious', 'political', 'around', 'family oriented', 'partying', 'time off', 'romantic', 'traditions', 'food', 'likes', 'think', 'widely celebrated', 'reflective', 'joyous', 'meaningful', 'early']
+
+with open('/Users/traceymills/consideration/item-ratings/response_data/kitchen.json') as f8:
+  kitchen = json.load(f8)
+kitchenList = ['microwave', 'blender', 'refridgerator', 'toaster', 'electric mixer', 'oven', 'coffee maker', 'stove', 'dishwasher', 'toaster oven', 'slow cooker', 'food processor', 'air fryer', 'waffle iron', 'pressure cooker', 'can opener', 'freezer', 'deep fryer', 'rice cooker', 'kettle', 'juicer', 'electric knife', 'griddle', 'sink', 'grill', 'coffee grinder', 'garbage disposal', 'wine fridge', 'garlic press', 'panini press', 'timer',  'ice maker']
+kDescriptors = ['expensive', 'large', 'requires electricity', 'gets hot', 'specialized', 'common', 'dangerous', 'essential', 'loud', 'heavy', 'plain sight', 'often', 'easy', 'likes', 'think', 'metallic']
+
+with open('/Users/traceymills/consideration/item-ratings/response_data/jobs.json') as f8:
+  jobs = json.load(f8)
+jobList = ['doctor', 'nurse', 'teacher', 'lawyer', 'police officer', 'firefighter', 'accountant', 'cashier', 'chef', 'waitstaff', 'engineer', 'banker', 'plumber', 'dentist', 'construction worker', 'janitor', 'salesperson', 'secretary', 'truck driver', 'electrician', 'manager', 'mechanic', 'carpenter', 'driver', 'programmer', 'clerk', 'politician', 'mail carrier', 'scientist', 'veterinarian', 'pilot', 'taxi driver', 'ceo', 'designer', 'paramedic', 'garbage collector', 'receptionist', 'artist', 'judge', 'bus driver', 'farmer', 'milkman', 'office worker', 'painter', 'bartender', 'administrative assistant', 'writer', 'customer service representative', 'analyst', 'factory worker', 'information technology', 'stock broker', 'technician', 'musician', 'librarian', 'paleontologist', 'actor', 'marketer', 'pharmacist', 'social worker', 'flight attendant', 'busboy', 'astronaut', 'professor', 'contractor', 'youtuber', 'consultant', 'singer', 'producer', 'dancer',  'repariman', 'maid', 'auditor', 'beautician', 'roofer', 'lineman', 'senator', 'president', 'athlete', 'journalist', 'porn star', 'assistant', 'director', 'football player', 'therapist']
+jobDescriptors = ['people oriented', 'pays well', 'desirable', 'common', 'think', 'likes', 'important', 'creativity', 'skills', 'physical', 'dangerous', 'detail oriented', 'been around', 'glamorous', 'male dominated', 'difficult']
+
+
 
 
 descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
@@ -45,9 +67,10 @@ descriptors2 = ["has large feet relative to its body size", "quiet", "has good h
 #questions = []
 #questions2 = []
 
-
-with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data.csv.json') as f5:
-  animals = json.load(f5)
+with open('/Users/traceymills/consideration/item-ratings/response_data/animals1.json') as f5:
+  animals1 = json.load(f5)
+with open('/Users/traceymills/consideration/item-ratings/response_data/animals2.json') as f5:
+  animals2 = json.load(f5)
 descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
 questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think", "awake"]
 questions2 = ["type", "diet"]
@@ -56,69 +79,11 @@ animalList = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", 
 #removed giraffe, lion, tiger, elephant, rhino, alligator
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "snake", "panther", "kangaroo", "owl", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "lizard", "fish"]
 #removed zebra, lion, giraffe, elephant, tiger, grizzly bear, monkey
-descriptors = ["think"]
-
-with open('/Users/traceymills/consideration/consideration-sets-rate/sports.json') as f6:
-  sports = json.load(f6)
-sportList = ['baseball', 'football', 'soccer', 'tennis', 'hockey', 'basketball', 'running', 'golf', 'volleyball', 'swimming', 'cricket', 'lacrosse', 'boxing', 'rugby', 'gymnastics', 'wrestling', 'ice skating', 'softball', 'bowling', 'skiing', 'polo', 'badminton', 'racecar driving', 'horseback riding', 'fencing', 'cheerleading', 'ping pong', 'biking', 'squash', 'curling', 'diving', 'raquetball', 'field hockey', 'water polo', 'handball', 'dance', 'snowboarding']
-descriptors = ['think', 'likes', 'popular', 'high energy', 'dangerous', 'strenuous', 'spectators', 'competitive', 'agility', 'expensive', 'space', 'been around', 'learn', 'flexibility']
-
-with open('/Users/traceymills/consideration/consideration-sets-rate/holidays.json') as f7:
-  holidays = json.load(f7)
-holidayList = ['Christmas', 'Thanksgiving', 'Fourth of July', 'Easter', 'Labor Day', 'Memorial Day', 'New Years', 'Halloween', 'Valentines Day', 'Veterans Day', 'Martin Luther King Jr. Day', 'Presidents Day', "St. Patricks Day", 'Hanukkah', 'Kwanza', 'Mothers Day', 'Fathers Day', 'Christopher Columbus Day', 'Passover', 'Birthdays', 'Chinese New Year', 'Ramadan', 'Cinco de Mayo', 'Earth Day', 'Flag Day', 'Diwali', 'Juneteenth', 'Winter Solstice', 'Boxing Day']
-descriptors = ['religious', 'political', 'around', 'family oriented', 'partying', 'time off', 'romantic', 'traditions', 'food', 'likes', 'think', 'widely celebrated', 'reflective', 'joyous', 'meaningful', 'early']
-
-with open('/Users/traceymills/consideration/consideration-sets-rate/kitchen.json') as f8:
-  kitchen = json.load(f8)
-kitchenList = ['microwave', 'blender', 'refridgerator', 'toaster', 'electric mixer', 'oven', 'coffee maker', 'stove', 'dishwasher', 'toaster oven', 'slow cooker', 'food processor', 'air fryer', 'waffle iron', 'pressure cooker', 'can opener', 'freezer', 'deep fryer', 'rice cooker', 'kettle', 'juicer', 'electric knife', 'griddle', 'sink', 'grill', 'coffee grinder', 'garbage disposal', 'wine fridge', 'garlic press', 'panini press', 'timer',  'ice maker']
-descriptors = ['expensive', 'large', 'requires electricity', 'gets hot', 'specialized', 'common', 'dangerous', 'essential', 'loud', 'heavy', 'plain sight', 'often', 'easy', 'likes', 'think', 'metallic']
-
-with open('/Users/traceymills/consideration/consideration-sets-rate/jobs.json') as f8:
-  jobs = json.load(f8)
-jobList = ['doctor', 'nurse', 'teacher', 'lawyer', 'police officer', 'firefighter', 'accountant', 'cashier', 'chef', 'waitstaff', 'engineer', 'banker', 'plumber', 'dentist', 'construction worker', 'janitor', 'salesperson', 'secretary', 'truck driver', 'electrician', 'manager', 'mechanic', 'carpenter', 'driver', 'programmer', 'clerk', 'politician', 'mail carrier', 'scientist', 'veterinarian', 'pilot', 'taxi driver', 'ceo', 'designer', 'paramedic', 'garbage collector', 'receptionist', 'artist', 'judge', 'bus driver', 'farmer', 'milkman', 'office worker', 'painter', 'bartender', 'administrative assistant', 'writer', 'customer service representative', 'analyst', 'factory worker', 'information technology', 'stock broker', 'technician', 'musician', 'librarian', 'paleontologist', 'actor', 'marketer', 'pharmacist', 'social worker', 'flight attendant', 'busboy', 'astronaut', 'professor', 'contractor', 'youtuber', 'consultant', 'singer', 'producer', 'dancer',  'repariman', 'maid', 'auditor', 'beautician', 'roofer', 'lineman', 'senator', 'president', 'athlete', 'journalist', 'porn star', 'assistant', 'director', 'football player', 'therapist']
-descriptors = ['people oriented', 'pays well', 'desirable', 'common', 'think', 'likes', 'important', 'creativity', 'skills', 'physical', 'dangerous', 'detail oriented', 'been around', 'glamorous', 'male dominated', 'difficult']
 
 
 def get_animals():
     return animals
 
-def create_dict(trial_data, an):
-    data = {}
-    for trial in trial_data:
-        a = trial["animal"]
-        if a not in animals:
-            continue
-        for d in descriptors:
-            if d in trial.keys():
-                if an == True:
-                    if trial[q] == "very rarely": n=0
-                    if trial[q] == "rarely": n=1
-                    if trial[q] == "an average amount": n=2
-                    if trial[q] == "often": n=3
-                    if trial[q] == "very often": n=4
-                    data[d] = data.get(d, {})   #dict for descriptor d
-                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
-                    data[d][a][0].append(n)
-                    data[d][a][1] = data[d][a][1] + 1
-                else:
-                    data[d] = data.get(d, {})   #dict for descriptor d
-                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
-                    data[d][a][0].append(int(trial[d]))
-                    data[d][a][1] = data[d][a][1] + 1
-    data2 = {}
-    for d, d_dict in data.items():
-        data2[d] = {}
-        for a in d_dict.keys():
-            if data[d][a][1] == 0:
-                data[d][a][2] = 0
-            else:
-                data[d][a][2] = sum(data[d][a][0])/data[d][a][1]
-            data2[d][a] = data[d][a][2]    
-    for a in animals:
-        for d in data2.keys():
-            data2[d][a] = data2[d].get(a, 0)
-
-    return data, data2
 
 def create_dict2(trial_data, descriptors, x):
     data = {}
@@ -135,6 +100,7 @@ def create_dict2(trial_data, descriptors, x):
                 if trial[d] == "an average amount": n=2
                 if trial[d] == "often": n=3
                 if trial[d] == "very often": n=4
+                print(trial[d])
                 data[d][a][0].append(n)
             else:
                 data[d][a][0].append(int(trial[d]))
@@ -155,7 +121,29 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(jobs, descriptors, "item")
+data, ratings = create_dict2(animals, descriptors, "animal")
+with open('/descriptor-ratings/animals.json', 'w) as f8:
+  json.dump(ratings, f8)
+"""
+data, ratings = create_dict2(sports, sportsDescriptors, "item")
+with open('descriptor-ratings/sports.json', 'w') as f8:
+  json.dump(ratings, f8)
+data, ratings = create_dict2(holidays, holDescriptors, "item")
+with open('descriptor-ratings/holidays.json', 'w') as f8:
+  json.dump(ratings, f8)
+data, ratings = create_dict2(jobs, jobDescriptors, "item")
+with open('descriptor-ratings/jobs.json', 'w') as f8:
+  json.dump(ratings, f8)
+data, ratings = create_dict2(kitchen, kDescriptors, "item")
+with open('descriptor-ratings/kitchen.json', 'w') as f8:
+  json.dump(ratings, f8)
+data, ratings = create_dict2(vegetables, vegDescriptors, "item")
+with open('descriptor-ratings/vegetables.json', 'w') as f8:
+  json.dump(ratings, f8)
+data, ratings = create_dict2(restaurants, resDescriptors, "item")
+with open('descriptor-ratings/restaurants.json', 'w') as f8:
+  json.dump(ratings, f8)
+"""
 
 def num_res_per_a(data):
     nums = []
@@ -166,7 +154,7 @@ def num_res_per_a(data):
 
 ################################
 #generation data
-with open('/Users/traceymills/consideration/consideration-sets/generation_data.json') as f:
+with open('/Users/traceymills/consideration/item-generations/generation_data.json') as f:
   gen_data = json.load(f)
 def generations(category, items):
     data = gen_data
@@ -230,10 +218,11 @@ def genDescriptorCorrelation(probs, ratings):
 corrs = genDescriptorCorrelation(probs, ratings)
 print(corrs)
 
+
 #get think data
 #print("restaurants:")
 genCounts, genList = generations('chain restaurants', restaurantList)
-data, ratings = create_dict2(restaurants, ["think"], "item")
+data, ratings = create_dict(restaurants, ["think"], "item")
 probs = getGenProbs(genCounts)
 corrs = genDescriptorCorrelation(probs, ratings)
 #print(corrs)
@@ -417,3 +406,39 @@ def animalsData(probs, animalFactorScores):
 
 
         
+def create_dict(trial_data, an):
+    data = {}
+    for trial in trial_data:
+        a = trial["animal"]
+        if a not in animals:
+            continue
+        for d in descriptors:
+            if d in trial.keys():
+                if an == True:
+                    if trial[q] == "very rarely": n=0
+                    if trial[q] == "rarely": n=1
+                    if trial[q] == "an average amount": n=2
+                    if trial[q] == "often": n=3
+                    if trial[q] == "very often": n=4
+                    data[d] = data.get(d, {})   #dict for descriptor d
+                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+                    data[d][a][0].append(n)
+                    data[d][a][1] = data[d][a][1] + 1
+                else:
+                    data[d] = data.get(d, {})   #dict for descriptor d
+                    data[d][a] = data[d].get(a, [[], 0, 0])   #list of responses, num responses, average
+                    data[d][a][0].append(int(trial[d]))
+                    data[d][a][1] = data[d][a][1] + 1
+    data2 = {}
+    for d, d_dict in data.items():
+        data2[d] = {}
+        for a in d_dict.keys():
+            if data[d][a][1] == 0:
+                data[d][a][2] = 0
+            else:
+                data[d][a][2] = sum(data[d][a][0])/data[d][a][1]
+            data2[d][a] = data[d][a][2]    
+    for a in animals:
+        for d in data2.keys():
+            data2[d][a] = data2[d].get(a, 0)
+    return data, data2

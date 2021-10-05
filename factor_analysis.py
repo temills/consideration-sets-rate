@@ -18,17 +18,15 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 
 ####################################
 #rating data
-with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data.csv.json') as f1:
+with open('/Users/traceymills/consideration/item-ratings/response_data/animals.json') as f1:
   trial_data1 = json.load(f1)
-with open('/Users/traceymills/consideration/consideration-sets-rate/rate_data2.csv.json') as f2:
+with open('/Users/traceymills/consideration/item-ratings/response_data/animals2.json') as f2:
   trial_data2 = json.load(f2)
-descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
+descriptors1 = ["large", "cool", "striking", "dangerous", "cute", "normal"]
 descriptors2 = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"]
-questions = []
-questions2 = []
-#descriptors = ["large", "cute", "cool", "normal", "striking", "dangerous"]
-#questions = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think"]
-#questions2 = ["awake", "diet", "type"]
+qs = ["desert", "forest", "tropics", "water", "land", "arctic", "lifespan", "think"]
+qs2 = ["awake", "diet", "type"]
+
 animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "giraffe", "bull", "whale", "rabbit", "lion", "hippo", "baboon", "bird", "monkey", "snake", "tiger", "panther", "kangaroo", "owl", "elephant", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "zebra", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "monkey", "snake", "panther", "kangaroo", "owl", "otter", "cheetah", "gazelle", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "grizzly bear", "lizard", "fish"]
 #removed giraffe, lion, tiger, elephant, rhino, alligator
@@ -37,7 +35,7 @@ animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "go
 def get_animals():
     return animals
 
-def create_dict():
+def create_dict(trial_data, descriptors, questions1, questions2):
     data = {}
     for trial in trial_data:
         a = trial["animal"]
@@ -52,7 +50,7 @@ def create_dict():
             data[q] = data.get(q, {})
             data[q][a] = data[q].get(a, {})
             data[q][a][trial[q]] = data[q][a].get(trial[q], 0) + 1
-        for q in questions:
+        for q in questions1:
             data[q] = data.get(q, {})   #dict for descriptor d
             data[q][a] = data[q].get(a, [[], 0, 0])   #list of responses, num responses, average
             n = 0
@@ -95,8 +93,13 @@ def create_dict():
             data2[d][a] = data2[d].get(a, 0)
 
     return data, data2
-data, ratings = create_dict()
+data1, ratings1 = create_dict(trial_data1, descriptors1, qs, qs2)
+data2, ratings2 = create_dict(trial_data2, descriptors2, [], [])
+ratings1.update(ratings2)
+with open('descriptor-ratings/animals.json', 'w') as f8:
+  json.dump(ratings1, f8)
 
+"""
 def num_res_per_a(data):
     nums = []
     for a in animals:
@@ -304,6 +307,6 @@ def animalsData(probs, animalFactorScores):
 #print(sorted(ratings["striking"].items(), key=lambda item: item[1], reverse=True)[0:10])
 #print(sorted(ratings["large"].items(), key=lambda item: item[1], reverse=True)[0:10])
 #print(sorted(ratings["dangerous"].items(), key=lambda item: item[1], reverse=True)[0:10])
-
+"""
 
         
