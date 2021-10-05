@@ -1,8 +1,22 @@
-# psych-survey
+# Item Ratings
 
-This repo is a template for COGS department surveys.
+## Study
 
-## Stack
+The code for the experiment is located in the public folder, at index.html. If you clone this repo, you should be able to be run it locally by typing "yarn start" into the command line, and then navigating to "http://localhost:9090/".  
+In this experiment, subjects complete 8 trials. In each trial, they are asked to rate items in a given category based on how well they fit certain descriptions.  
+The experiment was run on a variety of categories, and the items presented to subjects for comparison are those items that were commonly generated for that category in a previous study, which can be found in the item-generation repo. The descriptions according to which items are rated are relevant descriptors for items in the given category, as determined by subjects' responses in a previous study found in the item-comparisons repo.
+Categories, item lists for each category, and descriptor lists for each category can be seen in the index.html file.  
+
+## Data
+Response data for the study for each category is in the response-data folder. Some categories have two data files, because the study was run for these categories multiple times with different descriptors. The descriptor-ratings folder contains a json for each category, with the average rating for each item for each descriptor in the given category.  
+analyze.py, factor_analysis.py, and animal_coocurrence_analysis.py contain exploratory analysis scripts. 
+
+
+## Study Deployment
+
+This study was deployed using the template at https://github.com/nathan-m-schneider-22/psych-survey. Methodology of and instructions for using this template are described below.
+
+### Stack
 Instead of a single html page, this repo works as a Node.js Express server to
 1) Serve the html page with JsPsych
 2) Receive data and securely write it to the database
@@ -10,12 +24,11 @@ Instead of a single html page, this repo works as a Node.js Express server to
 The reason for doing this is security. With client-side database writing (php scripts called by JsPsych), the database credentials are exposed to the user. As such, all survey data could be exposed to any user. By insulating the database writing and running it on a server, rather than client-side, the database is protected. 
 
 
-
 This repo is designed for deployment to AWS Elastic Beanstalk deployment for Node.js apps. 
 
-## Requirements
+### Requirements
 
-### Development
+#### Development
 
 To develop this code, you must have minimal Javascript dev experience
  - Node.js installed, version >= 12. Download at https://nodejs.org/en/download/
@@ -23,12 +36,12 @@ To develop this code, you must have minimal Javascript dev experience
  - Git for the command line https://git-scm.com/downloads
 
  
-### Deployment 
+#### Deployment 
  - Install the EC CLI (Elastic Beanstalk Command Line Interface) https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
     - More instructions found here https://github.com/aws/aws-elastic-beanstalk-cli-setup
     - This is tricky, on Mac make sure your Xcode Command Line Tools are installed https://www.embarcadero.com/starthere/xe5/mobdevsetup/ios/en/installing_the_commandline_tools.html
  
- ## Startup
+ ### Startup
  
  NOTE: Do not clone and edit this repo, instead follow these instructions. 
  1) Create a new github repository, clone it to your machine
@@ -51,7 +64,7 @@ Connected to database!
 
 Once the server is up and running, you can edit the files, see below for code methodology. 
 
-## Code Methodology
+### Code Methodology
 This repo, if used correctly allows for quick development and deployment of database-writing JsPsych surveys. Below is an overview of the files 
  - [server.js](server.js) Main code for managing the the sending of files and receiving information. Only edit if you need to alter the flow of 
     1) Server gives client survey
@@ -80,7 +93,7 @@ function save_data(data) {
 ```
  - [public/custom_package.js](public/custom_package.js) Any extra code you need for the survey can be placed here and run. 
  - [parseData.js](parseData.js) This file is for processing the raw JSON data send from the survey, and returning a single SQL query for inserting the necessary values. See https://www.sqlservertutorial.net/sql-server-basics/sql-server-insert-multiple-rows/ fSetup the environment with or more info 
- ## Running Locally
+ ### Running Locally
  To run the code locally, start the server with `yarn start`. Once running, navigate to http://localhost:9090 to take the survey, and test locally. You can log information with `console.log()`. 
  
  To test your parsing and query constructing without having to take the survey many times:
@@ -102,7 +115,7 @@ function save_data(data) {
  
  
  
- ## Deployment
+ ### Deployment
  Once you have installed the EB CLI, (contact me if having trouble with that), follow these steps to deploy it to AWS. This process follows [this](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html) approach. 
  
  0) You may have to login with your AWS secret keys, find them [here](https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials)
