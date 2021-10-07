@@ -13,9 +13,9 @@ import numpy as np
 #from factor_analyzer.factor_analyzer import calculate_bartlett_sphericity
 #import pandas as pd
 #from factor_analyzer.factor_analyzer import calculate_kmo
+#
 
-
-cat = 'vegetable'
+cat = 'restaurant'
 
 with open('../item-generations/generation-data/' + cat + '_counts.json') as f:
   genCounts = json.load(f)
