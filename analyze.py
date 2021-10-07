@@ -8,11 +8,46 @@
 import json
 from difflib import get_close_matches
 import numpy as np
-import random
-from factor_analyzer import FactorAnalyzer
-from factor_analyzer.factor_analyzer import calculate_bartlett_sphericity
-import pandas as pd
-from factor_analyzer.factor_analyzer import calculate_kmo
+#import random
+#from factor_analyzer import FactorAnalyzer
+#from factor_analyzer.factor_analyzer import calculate_bartlett_sphericity
+#import pandas as pd
+#from factor_analyzer.factor_analyzer import calculate_kmo
+
+
+cat = 'vegetable'
+
+with open('../item-generations/generation-data/' + cat + '_counts.json') as f:
+  genCounts = json.load(f)
+
+with open('descriptor-ratings/' + cat + 's.json') as f:
+  ratings = json.load(f)
+
+def getGenProbs(genCounts):
+    probs = {}
+    tot = sum(list(genCounts.values()))
+    for g, n in genCounts.items():
+        probs[g] = n/tot
+    return probs
+probs = getGenProbs(genCounts)
+
+def genDescriptorCorrelation(probs, ratings):
+    correlations = {}
+    for d, d_dict in ratings.items():
+        x, y = [], []
+        for a, n in d_dict.items():
+            x.append(n) #average rating for item
+            y.append(probs.get(a, 0)) #probability of generation for item
+        correlations[d] = np.corrcoef(x, y)[0][1]
+    return correlations
+corrs = genDescriptorCorrelation(probs, ratings)
+
+with open('descriptor-generation-correlations/'+cat+'s.json', 'w') as f:
+  json.dump(corrs, f)
+
+
+
+
 
 
 ####################################
@@ -27,12 +62,14 @@ from factor_analyzer.factor_analyzer import calculate_kmo
 #  animals_2 = json.load(f2)
 #with open('/Users/traceymills/consideration/consideration-sets-rate/vegetables.json') as f3:
 #  vegetables = json.load(f3)
+"""
 with open('/Users/traceymills/consideration/item-ratings/response_data/restaurants.json') as f4:
   restaurants = json.load(f4)
 resDescriptors = ["think", "likes", "popular", "many locations", "is unique", "healthy", "brightly colored logo", "lively", "variety", "well decorated", "expensive", "quick", "casual"]
 #resDescriptors = ["interesting side dishes", "soft food", "cold food", "desserts"]
-restaurantList = [str.lower(res) for res in ['Mcdonalds', 'Burger King', 'Wendys', 'Taco Bell', 'Applebees', 'Chilis', 'Olive Garden', 'Arbys', 'Pizza Hut', 'Chipotle', 'TGI Fridays', 'Subway', 'Red Lobster', 'Chick Fil A', 'Kentucky Fried Chicken', 'Outback Steakhouse', 'Red Robin', 'Dennys', 'Cheesecake Factory', 'Panera', 'Buffalo Wild Wings', 'Popeyes', 'Dominos', 'IHOP', 'Dairy Queen', 'Five Guys', 'Hardees', 'Panda Express', 'Starbucks', 'Cracker Barrel', 'Jimmy Johns', 'Sonic', 'Jack in the Box', 'Ruby Tuesdays', 'PF Changs', 'Hooters', 'Papa Johns', 'Texas Roadhouse', 'Little Ceasars', 'Dunkin Donuts', 'Long John Silvers', 'Maggianos']];
-
+with open('../item-generations/item-lists/restaurants.json') as f:
+  restaurantList = json.load(f)
+restaurantList = [str.lower(res) for res in restaurantList]
 
 with open('/Users/traceymills/consideration/item-ratings/response_data/vegetables.json') as f5:
   vegetables = json.load(f5)
@@ -61,12 +98,12 @@ jobDescriptors = ['people oriented', 'pays well', 'desirable', 'common', 'think'
 
 
 
-
 descriptors1 = ["large", "cool", "striking", "dangerous", "lifespan"]
 descriptors2 = ["has large feet relative to its body size", "quiet", "has good hearing", "has long hair", "sleeps very little"]
 #questions = []
 #questions2 = []
 
+#animals is complicated cus ran on dif descriptors
 with open('/Users/traceymills/consideration/item-ratings/response_data/animals1.json') as f5:
   animals1 = json.load(f5)
 with open('/Users/traceymills/consideration/item-ratings/response_data/animals2.json') as f5:
@@ -79,13 +116,9 @@ animalList = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", 
 #removed giraffe, lion, tiger, elephant, rhino, alligator
 #animals = ["leopard", "chimp", "beetle", "llama", "hyena", "mouse", "horse", "goat", "antelope", "sea lion", "fox", "deer", "tarantula", "bat", "meerkat", "buffalo", "bull", "whale", "rabbit", "hippo", "baboon", "bird", "snake", "panther", "kangaroo", "owl", "otter", "rhino", "cheetah", "gazelle", "alligator", "penguin", "panda", "parrot", "eagle", "polar bear", "koala", "ostrich", "crocodile", "dolphin", "lemur", "turtle", "gorilla", "wolf", "shark", "cow", "peacock", "jaguar", "camel", "platypus", "flamingo", "duck", "sloth", "seal", "lizard", "fish"]
 #removed zebra, lion, giraffe, elephant, tiger, grizzly bear, monkey
+"""
 
-
-def get_animals():
-    return animals
-
-
-def create_dict2(trial_data, descriptors, x):
+def get_ratings(trial_data, descriptors, x):
     data = {}
     allItems = []
     for trial in trial_data:
@@ -121,26 +154,27 @@ def create_dict2(trial_data, descriptors, x):
 
     return data, data2
 
-data, ratings = create_dict2(animals, descriptors, "animal")
+"""
+data, ratings = get_ratings(animals, descriptors, "animal")
 with open('/descriptor-ratings/animals.json', 'w) as f8:
   json.dump(ratings, f8)
-"""
-data, ratings = create_dict2(sports, sportsDescriptors, "item")
+
+data, ratings = get_ratings(sports, sportsDescriptors, "item")
 with open('descriptor-ratings/sports.json', 'w') as f8:
   json.dump(ratings, f8)
-data, ratings = create_dict2(holidays, holDescriptors, "item")
+data, ratings = get_ratings(holidays, holDescriptors, "item")
 with open('descriptor-ratings/holidays.json', 'w') as f8:
   json.dump(ratings, f8)
-data, ratings = create_dict2(jobs, jobDescriptors, "item")
+data, ratings = get_ratings(jobs, jobDescriptors, "item")
 with open('descriptor-ratings/jobs.json', 'w') as f8:
   json.dump(ratings, f8)
-data, ratings = create_dict2(kitchen, kDescriptors, "item")
+data, ratings = get_ratings(kitchen, kDescriptors, "item")
 with open('descriptor-ratings/kitchen.json', 'w') as f8:
   json.dump(ratings, f8)
-data, ratings = create_dict2(vegetables, vegDescriptors, "item")
+data, ratings = get_ratings(vegetables, vegDescriptors, "item")
 with open('descriptor-ratings/vegetables.json', 'w') as f8:
   json.dump(ratings, f8)
-data, ratings = create_dict2(restaurants, resDescriptors, "item")
+data, ratings = get_ratings(restaurants, resDescriptors, "item")
 with open('descriptor-ratings/restaurants.json', 'w') as f8:
   json.dump(ratings, f8)
 """
@@ -186,19 +220,9 @@ def generations(category, items):
             genList[cat][len(genList[cat])-1].append(gen)
         genList[cat][len(genList[cat])-1] = list(set(genList[cat][len(genList[cat])-1]))
     return genCounts[category], genList[category]
-genCounts, x = generations('jobs', "item")
+#genCounts, x = generations('jobs', "item")
 
 
-def getGenProbs(genCounts):
-    probs = {}
-    tot = sum(list(genCounts.values()))
-    for g, n in genCounts.items():
-        probs[g] = n/tot
-    return probs
-probs = getGenProbs(genCounts)
-
-#print(genCounts)
-#print(sorted(probs.items(), key=lambda item: item[1], reverse=True))
 
 
 
@@ -206,19 +230,10 @@ probs = getGenProbs(genCounts)
 #combine data
 #print(ratings)
 #correlations between animals score for descriptors and animals prob. of coming to mind
-def genDescriptorCorrelation(probs, ratings):
-    correlations = {}
-    for d, d_dict in ratings.items():
-        x, y = [], []
-        for a, n in d_dict.items():
-            x.append(n) #average rating for item
-            y.append(probs.get(a, 0)) #probability of generation for item
-        correlations[d] = np.corrcoef(x, y)[0][1]
-    return correlations
-corrs = genDescriptorCorrelation(probs, ratings)
-print(corrs)
 
 
+
+"""
 #get think data
 #print("restaurants:")
 genCounts, genList = generations('chain restaurants', restaurantList)
@@ -442,3 +457,4 @@ def create_dict(trial_data, an):
         for d in data2.keys():
             data2[d][a] = data2[d].get(a, 0)
     return data, data2
+"""
