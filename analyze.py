@@ -17,12 +17,13 @@ import numpy as np
 
 cat = 'restaurant'
 
-with open('../item-generations/generation-data/' + cat + '_counts.json') as f:
+with open('../item-generations/generation_data/' + cat + '_counts.json') as f:
   genCounts = json.load(f)
 
 with open('descriptor-ratings/' + cat + 's.json') as f:
   ratings = json.load(f)
 
+"""
 def getGenProbs(genCounts):
     probs = {}
     tot = sum(list(genCounts.values()))
@@ -30,6 +31,7 @@ def getGenProbs(genCounts):
         probs[g] = n/tot
     return probs
 probs = getGenProbs(genCounts)
+"""
 
 def genDescriptorCorrelation(probs, ratings):
     correlations = {}
@@ -40,10 +42,10 @@ def genDescriptorCorrelation(probs, ratings):
             y.append(probs.get(a, 0)) #probability of generation for item
         correlations[d] = np.corrcoef(x, y)[0][1]
     return correlations
-corrs = genDescriptorCorrelation(probs, ratings)
 
-with open('descriptor-generation-correlations/'+cat+'s.json', 'w') as f:
-  json.dump(corrs, f)
+corrs=genDescriptorCorrelation(genCounts, ratings)
+#with open('descriptor-generation-correlations/'+cat+'s.json', 'w') as f:
+#  json.dump(corrs, f)
 
 
 
